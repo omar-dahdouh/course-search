@@ -1,0 +1,22 @@
+{
+  "name": "course-search",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd client && npm i && cd ../server && npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omar-dahdouh/course-search.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/omar-dahdouh/course-search/issues"
+  },
+  "homepage": "https://github.com/omar-dahdouh/course-search#readme",
+  "dependencies": {},
+  "devDependencies": {}
+}
