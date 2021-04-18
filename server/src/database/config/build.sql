@@ -5,14 +5,15 @@ DROP TABLE IF EXISTS course;
 CREATE TABLE course
 (
 	id SERIAL PRIMARY KEY,
-	categories INTEGER[],
-	title VARCHAR(255) NOT NULL,
-	image VARCHAR(255) NOT NULL ,
+	source INTEGER NOT NULL,
 	url VARCHAR(255) NOT NULL,
-	rate INTEGER,
-	reviews REAL,
+	title VARCHAR(255) NOT NULL,
+	image VARCHAR(255),
+	rating REAL,
+	reviews INTEGER,
 	description TEXT,
-	source INTEGER,
+	categories INTEGER[],
+	date DATE
 );
 
 COMMIT;
