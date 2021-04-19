@@ -4,19 +4,26 @@ const {
     pageNotFound,
     serverError,
     build,
+
     updateUdemy,
     updateCoursera,
     updateEdx,
     updateAlison,
     updateFuturelearn,
+
+    search,
 } = require('../controller');
 
 router.get('/build', build);
+
 router.get('/updateUdemy', updateUdemy);
 router.get('/updateCoursera', updateCoursera);
 router.get('/updateEdx', updateEdx);
 router.get('/updateAlison', updateAlison);
 router.get('/updateFuturelearn', updateFuturelearn);
+
+router.get('/search/:query', search);
+
 
 router.use(pageNotFound);
 router.use(serverError);
