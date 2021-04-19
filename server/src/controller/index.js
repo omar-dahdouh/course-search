@@ -7,6 +7,8 @@ const updateEdx = require('../controller/updateData/edx');
 const updateAlison = require('../controller/updateData/alison');
 const updateFuturelearn = require('../controller/updateData/futurelearn');
 
+const search = require('../controller/getData/search');
+
 module.exports = {
     pageNotFound,
     serverError,
@@ -17,4 +19,6 @@ module.exports = {
     updateEdx,
     updateAlison,
     updateFuturelearn,
+
+    search,
 };
