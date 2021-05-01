@@ -1,8 +1,15 @@
-import React from "react";
+import React from 'react';
+
+import { Row, Col } from 'antd';
 
 function HomePage() {
   return (
-    <h2>home</h2>
+    <>
+      <Row>
+        <Col span={12}>col-12</Col>
+        <Col span={12}>col-12</Col>
+      </Row>
+    </>
   );
 }
 

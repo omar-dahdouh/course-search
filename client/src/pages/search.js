@@ -1,39 +1,35 @@
-import React, { useState } from "react";
-import { getRequest } from './functions/fetch';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 function SearchPage() {
-    const [courses, setCourses] = useState([]);
-    const [query, setQuery] = useState('');
+  const [courses, setCourses] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
 
-    async function handleSubmit(event) {
-        event.preventDefault();
-        
-        console.log({query});
-        
-        const url = `/api/v1/search/${query}`
-        const data = await getRequest(url);
-        setCourses(data.results)
-        
-    }
+  const { query } = useParams();
 
-    function handleChange({target}) {
-        setQuery(target.value);
-    }
+  useEffect(() => {
+    console.log('useEffect');
+    axios.get(`/api/v1/search/${query}`).then(({ data }) => {
+      setCourses(data.results);
+    });
+  }, [query]);
 
-    return (
-        <>
-            <h2>search</h2>
-            <form onSubmit={handleSubmit}>
-                <input type="text" value={query} onChange={handleChange}/>
-                <input type="submit" value="Search" />
-            </form>
-            <ul className="results">
-                {courses.map(course => {
-                    return <li key={course.id}>{course.title}</li>
-                })}
-            </ul>
-        </>
-    );
+  return (
+    <>
+      <h2>results:</h2>
+      <ul>
+        {courses.map((course) => {
+          return (
+            <li key={course.id}>
+              <Link to={`/details/${course.id}`}>{course.title}</Link>
+            </li>
+          );
+        })}
+      </ul>
+    </>
+  );
 }
 
 export default SearchPage;
