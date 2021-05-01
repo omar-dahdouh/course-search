@@ -1,5 +1,5 @@
 const { pageNotFound, serverError } = require('./error');
-const {build} = require('../controller/database');
+const { build } = require('../controller/database');
 
 const updateUdemy = require('../controller/updateData/udemy');
 const updateCoursera = require('../controller/updateData/coursera');
@@ -8,17 +8,19 @@ const updateAlison = require('../controller/updateData/alison');
 const updateFuturelearn = require('../controller/updateData/futurelearn');
 
 const search = require('../controller/getData/search');
+const getCourse = require('../controller/getData/getCourse');
 
 module.exports = {
-    pageNotFound,
-    serverError,
-    build,
+  pageNotFound,
+  serverError,
+  build,
 
-    updateUdemy,
-    updateCoursera,
-    updateEdx,
-    updateAlison,
-    updateFuturelearn,
+  updateUdemy,
+  updateCoursera,
+  updateEdx,
+  updateAlison,
+  updateFuturelearn,
 
-    search,
+  search,
+  getCourse,
 };

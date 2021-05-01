@@ -1,40 +1,27 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.css';
+import 'antd/dist/antd.css';
 
-import HomePage from './pages/home';
-import SearchPage from './pages/search';
-import DetailsPage from './pages/details';
+import { HomePage, SearchPage, DetailsPage } from './pages';
+
+import { Layout } from 'antd';
+
+import { Header } from './components';
 
 function App() {
   return (
     <Router>
+      <Layout>
+        <Header />
+      </Layout>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">home</Link>
-            </li>
-            <li>
-              <Link to="/search">search</Link>
-            </li>
-            <li>
-              <Link to="/details">details</Link>
-            </li>
-          </ul>
-        </nav>
-
         <Switch>
-          <Route path="/search">
+          <Route path="/search/:query">
             <SearchPage />
           </Route>
-          <Route path="/details">
+          <Route path="/details/:id">
             <DetailsPage />
           </Route>
           <Route path="/">
