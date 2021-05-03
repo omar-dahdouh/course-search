@@ -1,16 +1,18 @@
-const { dbBuild } = require('../database/config/build')
+const { dbBuild } = require('../database/config/build');
 
 async function build(req, res) {
-    console.log('build');
-
+  try {
     await dbBuild();
-
     res.json({
-        message: 'build'
-    })
-};
-
+      message: 'built successfully',
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'failed to build',
+    });
+  }
+}
 
 module.exports = {
-    build,
-}
+  build,
+};
