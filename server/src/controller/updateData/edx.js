@@ -2,7 +2,7 @@ const axios = require('axios');
 const urlencode = require('urlencode');
 
 const { insertCourses, deleteCourses } = require('../../database/query');
-const catalog = require('../../catalog');
+const catalog = require('../../assets/catalog');
 
 async function fetchData(url, payload) {
   return (await axios.post(url, payload)).data;

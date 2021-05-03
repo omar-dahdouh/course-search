@@ -1,16 +1,28 @@
 const searchCourses = require('../../database/query/searchCourses');
+const { categoryName } = require('../../assets/catalogIndex');
 
 async function search(req, res) {
   const { query } = req.params;
 
-  const results = await searchCourses(query);
+  try {
+    const { rows } = await searchCourses(query);
 
-  res.json({
-    query,
-    message: 'done',
-    results: results.rows,
-    qqq: results,
-  });
+    // console.log({ rows });
+    res.json({
+      query,
+      message: 'success',
+      results: rows.map((row) => {
+        return { ...row, source: categoryName.get(row.source) };
+      }),
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      query,
+      message: 'failed',
+      results: [],
+    });
+  }
 }
 
 module.exports = search;

@@ -2,7 +2,7 @@ const axios = require('axios');
 const qs = require('querystringify');
 
 const { insertCourses, deleteCourses } = require('../../database/query');
-const catalog = require('../../catalog');
+const catalog = require('../../assets/catalog');
 
 const endpoint = 'https://www.udemy.com/api-2.0/discovery-units/all_courses/?';
 

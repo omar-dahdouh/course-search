@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const { insertCourses, deleteCourses } = require('../../database/query');
-const catalog = require('../../catalog');
+const catalog = require('../../assets/catalog');
 
 async function update(req, res) {
   const photoPrefix =
