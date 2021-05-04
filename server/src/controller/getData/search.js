@@ -1,19 +1,25 @@
 const searchCourses = require('../../database/query/searchCourses');
 const { categoryName } = require('../../assets/catalogIndex');
+const { sourceImage } = require('../../assets/sourceInfo');
 
 async function search(req, res) {
   const { query } = req.params;
 
   try {
     const { rows } = await searchCourses(query);
+    const results = rows.map((row) => {
+      const source = categoryName.get(row.source);
+      return {
+        ...row,
+        source,
+        image: sourceImage[source](row.image),
+      };
+    });
 
-    // console.log({ rows });
     res.json({
       query,
       message: 'success',
-      results: rows.map((row) => {
-        return { ...row, source: categoryName.get(row.source) };
-      }),
+      results,
     });
   } catch (error) {
     console.log(error);
