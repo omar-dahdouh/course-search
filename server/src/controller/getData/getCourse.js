@@ -1,5 +1,6 @@
 const getCourse = require('../../database/query/getCourse');
 const { categoryName, categoryPath } = require('../../assets/catalogIndex');
+const { sourceImage, sourceLink } = require('../../assets/sourceInfo');
 
 async function course(req, res) {
   const { id } = req.params;
@@ -14,14 +15,17 @@ async function course(req, res) {
       });
     } else {
       const [course] = rows;
+      const source = categoryName.get(course.source);
 
       res.json({
         id,
         message: 'found',
         course: {
           ...course,
-          source: categoryName.get(course.source),
+          source,
           categories: course.categories.map(categoryPath),
+          image: sourceImage[source](course.image),
+          url: sourceLink[source](course.url),
         },
       });
     }
