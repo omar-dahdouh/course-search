@@ -13,6 +13,7 @@ const {
 
   search,
   getCourse,
+  getCatalog,
 } = require('../controller');
 
 router.get('/build', build);
@@ -23,7 +24,8 @@ router.get('/updateEdx', updateEdx);
 router.get('/updateAlison', updateAlison);
 router.get('/updateFuturelearn', updateFuturelearn);
 
-router.get('/search/:query', search);
+router.get('/getCatalog', getCatalog);
+router.post('/search', search);
 router.get('/course/:id', getCourse);
 
 router.use(pageNotFound);

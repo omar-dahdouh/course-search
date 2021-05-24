@@ -9,6 +9,7 @@ const updateFuturelearn = require('../controller/updateData/futurelearn');
 
 const search = require('../controller/getData/search');
 const getCourse = require('../controller/getData/getCourse');
+const getCatalog = require('../controller/getData/getCatalog');
 
 module.exports = {
   pageNotFound,
@@ -23,4 +24,5 @@ module.exports = {
 
   search,
   getCourse,
+  getCatalog,
 };

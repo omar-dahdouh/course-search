@@ -35,9 +35,9 @@ async function update(req, res) {
   const categories = catalog[1].sub;
 
   for (const cat of categories) {
-    const subCategories = [cat, ...cat.sub];
+    const subCategories = cat.sub;
 
-    const jsonData = subCategories.map((sub, index) => {
+    const jsonData = subCategories.map((sub) => {
       return {
         operationName: 'catalogResultQuery',
         variables: {
@@ -46,9 +46,7 @@ async function update(req, res) {
           facets: [
             'languages:English',
             'entityTypeTag:Courses',
-            index === 0
-              ? `categoryMultiTag:${sub.name}`
-              : `subcategoryMultiTag:${sub.name}`,
+            `subcategoryMultiTag:${sub.name}`,
           ],
         },
         query,
@@ -57,7 +55,7 @@ async function update(req, res) {
 
     const data = (await axios.post(url, jsonData)).data;
 
-    for (const [idx, sub] of subCategories.entries()) {
+    subCategories.forEach((sub, idx) => {
       const courses = data[
         idx
       ].data.CatalogResultsV2Resource.browseV2.elements[0].courses.elements.filter(
@@ -65,19 +63,13 @@ async function update(req, res) {
       );
 
       for (const course of courses) {
-        if (courseIndex.has(course.id)) {
-          const index = courseIndex.get(course.id);
-          courseList[index].categories.push(sub.id);
-        } else {
-          index = courseList.length;
+        if (!courseIndex.has(course.id)) {
           courseIndex.set(course.id, courseList.length);
-
           courseList.push({
-            source,
             title: course.name,
             url: course.slug,
             description: course.description,
-            categories: [sub.id],
+            category: [source, cat.id, sub.id],
             image: course.photoUrl.replace(photoPrefix, ''),
             rating: course.courseDerivativesV2.averageFiveStarRating,
             reviews: course.courseDerivativesV2.ratingCount,
@@ -85,7 +77,7 @@ async function update(req, res) {
           });
         }
       }
-    }
+    });
   }
 
   if (courseList.length > 0) {

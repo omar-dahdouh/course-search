@@ -24,18 +24,14 @@ async function update(req, res) {
 
   const data = await Promise.all(promises);
 
-  for (const [idx, cat] of categories.entries()) {
+  categories.forEach((cat, idx) => {
     const courses = data[idx].result;
 
     for (const course of courses) {
-      if (courseIndex.has(course.id)) {
-        const index = courseIndex.get(course.id);
-        courseList[index].categories.push(cat.id);
-      } else {
+      if (!courseIndex.has(course.id)) {
         courseIndex.set(course.id, courseList.length);
 
         courseList.push({
-          source: source,
           title: course.name,
           description:
             course.headline +
@@ -49,11 +45,11 @@ async function update(req, res) {
             ''
           ),
           rating: course.rating,
-          categories: [cat.id],
+          category: [source, cat.id],
         });
       }
     }
-  }
+  });
 
   if (courseList.length > 0) {
     await deleteCourses(source);

@@ -30,12 +30,11 @@ async function update(req, res) {
 
   const data = await Promise.all(promises);
 
-  for (const [idx, cat] of categories.entries()) {
+  categories.forEach((cat, idx) => {
     const courses = data[idx].cards.filter((x) => x.path).slice(0, 96);
 
     for (const course of courses) {
       courseList.push({
-        source: source,
         title: course.title,
         description: course.introduction,
         url: course.path.replace('/courses/', ''),
@@ -45,10 +44,10 @@ async function update(req, res) {
         ),
         rating: course.averageReviewScore,
         reviews: course.totalReviews,
-        categories: [cat.id],
+        category: [source, cat.id],
       });
     }
-  }
+  });
 
   if (courseList.length > 0) {
     await deleteCourses(source);
