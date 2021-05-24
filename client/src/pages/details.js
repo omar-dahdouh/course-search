@@ -57,22 +57,23 @@ function DetailsPage() {
         <>
           <Row gutter={16}>
             <Col xs={24} sm={24} md={18}>
-              {course.categories.map((cat) => {
-                return (
-                  <Breadcrumb>
-                    {cat.map(({ id, name }) => {
-                      return (
-                        <Breadcrumb.Item>
-                          <Link to={`/category/${id}`}>{name}</Link>
-                        </Breadcrumb.Item>
-                      );
-                    })}
+              <img
+                className="source-icon"
+                src={`/icons/${course.source}.png`}
+                alt={course.source}
+              />
+              <Breadcrumb style={{ display: 'inline' }}>
+                {course.category.map(({ id, name }) => {
+                  return (
                     <Breadcrumb.Item>
-                      <Link to={`/course/${id}`}>{course.id}</Link>
+                      <Link to={`/search/?category=${id}`}>{name}</Link>
                     </Breadcrumb.Item>
-                  </Breadcrumb>
-                );
-              })}
+                  );
+                })}
+                <Breadcrumb.Item>{course.id}</Breadcrumb.Item>
+              </Breadcrumb>
+              <br />
+
               <Title level={2} style={{ display: 'inline' }}>
                 <a href={course.url}>{course.title}</a>
               </Title>
@@ -82,18 +83,6 @@ function DetailsPage() {
                 </Text>
               )}
               <br />
-              {/* <img
-                className="source-icon"
-                src={`/icons/${course.source}.png`}
-                alt={course.source}
-              />
-              <Text strong>{course.source}</Text>
-              {course.date && (
-                <Text type="secondary" style={{ marginLeft: 16 }}>
-                  {new Date(course.date).toDateString()}
-                </Text>
-              )} */}
-
               <br />
               <Rate
                 value={Math.round(course.rating * 2) / 2}
@@ -102,11 +91,8 @@ function DetailsPage() {
               />
               <Text strong> {Math.round(course.rating * 10) / 10}</Text>
               <Text strong> {`(${+course.reviews})`}</Text>
-              {console.log({ categories: course.categories })}
               <br />
-
               <br />
-              {/* <Text type="primary">publication date</Text> */}
 
               <Button type="primary">add to favorite</Button>
               <br />

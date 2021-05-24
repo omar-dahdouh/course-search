@@ -18,7 +18,7 @@ function App() {
       </Layout>
       <div>
         <Switch>
-          <Route path="/search/:query">
+          <Route path="/search">
             <SearchPage />
           </Route>
           <Route path="/details/:id">

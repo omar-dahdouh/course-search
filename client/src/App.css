@@ -2,9 +2,42 @@
   padding: 32px 5%;
 }
 
+.search-input,
+.tree-select {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
 .source-icon {
-  position: relative;
-  width: 16px;
-  height: 16px;
+  float: none;
+  width: 18px;
+  height: 18px;
   margin-right: 8px;
+}
+
+.grid-view-card {
+  margin-bottom: 16px;
+}
+
+.grid-card-image {
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  padding-top: 70%;
+  background-color: #ddd;
+}
+
+.grid-card-rating {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  text-align: center;
+  background-color: #0006;
+}
+
+.grid-card-title {
+  display: inline-block;
+  text-align: left;
+  font-family: Arial;
+  font-weight: bold;
 }
