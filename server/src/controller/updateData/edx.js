@@ -59,18 +59,14 @@ async function update(req, res) {
 
   const data = await Promise.all(promises);
 
-  for (const [idx, cat] of categories.entries()) {
+  categories.forEach((cat, idx) => {
     const courses = data[idx].results[0].hits;
 
     for (const course of courses) {
-      if (courseIndex.has(course.objectID)) {
-        const index = courseIndex.get(course.objectID);
-        courseList[index].categories.push(cat.id);
-      } else {
+      if (!courseIndex.has(course.objectID)) {
         courseIndex.set(course.objectID, courseList.length);
 
         courseList.push({
-          source: source,
           title: course.title,
           description: [
             course.primary_description,
@@ -83,11 +79,11 @@ async function update(req, res) {
             'https://prod-discovery.edx-cdn.org/media/course/image/',
             ''
           ),
-          categories: [cat.id],
+          category: [source, cat.id],
         });
       }
     }
-  }
+  });
 
   if (courseList.length > 0) {
     await deleteCourses(source);

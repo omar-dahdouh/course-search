@@ -48,8 +48,10 @@ async function update(req, res) {
   const source = catalog[0].id;
   const categories = catalog[0].sub;
 
-  for (const cat of categories.slice(0)) {
-    const promises = cat.sub.map((sub) => {
+  for (const cat of categories) {
+    const subCategories = cat.sub;
+
+    const promises = subCategories.map((sub) => {
       const url = makeUrl({
         subcategory: sub.name,
         subcategory_id: sub.value,
@@ -60,17 +62,13 @@ async function update(req, res) {
 
     const data = await Promise.all(promises);
 
-    for (const [idx, sub] of cat.sub.entries()) {
+    subCategories.forEach((sub, idx) => {
       const courses = data[idx].unit.items;
 
       for (const item of courses) {
-        if (courseIndex.has(item.id)) {
-          const index = courseIndex.get(item.id);
-          courseList[index].categories.push(sub.id);
-        } else {
+        if (!courseIndex.has(item.id)) {
           courseIndex.set(item.id, courseList.length);
           courseList.push({
-            source: source,
             title: item.title,
             description: item.description,
             image: (
@@ -80,11 +78,11 @@ async function update(req, res) {
             date: item.published_time,
             rating: item.rating,
             reviews: item.num_reviews,
-            categories: [sub.id],
+            category: [source, cat.id, sub.id],
           });
         }
       }
-    }
+    });
   }
 
   if (courseList.length > 0) {
