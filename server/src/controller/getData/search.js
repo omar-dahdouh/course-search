@@ -1,18 +1,25 @@
 const searchCourses = require('../../database/query/searchCourses');
-const { categoryName } = require('../../assets/catalogIndex');
+const { categoryName, categorySubTree } = require('../../assets/catalogIndex');
 const { sourceImage } = require('../../assets/sourceInfo');
 
 async function search(req, res) {
-  const { query } = req.params;
+  const { query = '', category = 0, offset = 0, limit = 12 } = req.body;
 
   try {
-    const { rows } = await searchCourses(query);
+    const respo = await searchCourses({ query, category, offset, limit });
+    const { rows } = respo;
     const results = rows.map((row) => {
-      const source = categoryName.get(row.source);
+      const source = categoryName.get(row.category[0]);
       return {
-        ...row,
-        source,
+        category: row.category.map((id) => {
+          return { id, name: categoryName.get(id) };
+        }),
+        id: row.id,
         image: sourceImage[source](row.image),
+        rating: row.rating,
+        reviews: row.reviews,
+        source,
+        title: row.title,
       };
     });
 
@@ -20,6 +27,8 @@ async function search(req, res) {
       query,
       message: 'success',
       results,
+      count: rows[0] ? +rows[0].full_count : 0,
+      respo,
     });
   } catch (error) {
     console.log(error);
