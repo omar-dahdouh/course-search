@@ -34,7 +34,7 @@ function DetailsPage() {
   }, [id]);
 
   return (
-    <div className="page-content">
+    <div className="content-padding">
       {isLoading && (
         <Spin tip="Loading...">
           <Alert
