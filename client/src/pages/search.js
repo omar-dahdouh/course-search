@@ -113,8 +113,12 @@ function SearchPage() {
     history.push(`/details/${id}`);
   }
 
+  function filterTreeNode(input, { title }) {
+    return title.toLowerCase().includes(input.toLowerCase());
+  }
+
   return (
-    <div className="page-content">
+    <div className="content-padding">
       <Row gutter={16}>
         <Col xs={24} sm={12}>
           <Input.Search
@@ -132,6 +136,7 @@ function SearchPage() {
             onChange={onCategoryChange}
             className="tree-select"
             showSearch
+            filterTreeNode={filterTreeNode}
           >
             {catalogRender(catalog)}
           </TreeSelect>
