@@ -9,10 +9,7 @@ app.disabled('x-powered-by');
 
 app.set('port', process.env.PORT || 5000);
 
-const middlewares = [
-  express.json(),
-  express.urlencoded({ extended: false }),
-];
+const middlewares = [express.json(), express.urlencoded({ extended: false })];
 
 app.use(middlewares);
 
