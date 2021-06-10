@@ -9,5 +9,4 @@ module.exports = ({ query, category, offset, limit }) =>
       ORDER BY reviews DESC NULLS LAST
       LIMIT $4 OFFSET $3;`,
     values: [`%${query}%`, category, offset, limit],
-    asd: console.log({ query, category, offset, limit }),
   });

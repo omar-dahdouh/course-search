@@ -6,8 +6,7 @@ async function search(req, res) {
   const { query = '', category = 0, offset = 0, limit = 12 } = req.body;
 
   try {
-    const respo = await searchCourses({ query, category, offset, limit });
-    const { rows } = respo;
+    const { rows } = await searchCourses({ query, category, offset, limit });
     const results = rows.map((row) => {
       const source = categoryName.get(row.category[0]);
       return {
@@ -28,7 +27,6 @@ async function search(req, res) {
       message: 'success',
       results,
       count: rows[0] ? +rows[0].full_count : 0,
-      respo,
     });
   } catch (error) {
     console.log(error);
