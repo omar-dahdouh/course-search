@@ -18,7 +18,6 @@ async function register(req, res) {
 
   try {
     const { name, email, password } = await userSchema.validateAsync(fields);
-    console.log({ name, email, password });
 
     const { rows } = await getUserByEmail(email);
     if (rows.length !== 0) {
@@ -37,8 +36,8 @@ async function register(req, res) {
 
       const [user] = rows;
       if (user) {
+        // first user to register becomes an admin
         if (user.id === 1) {
-          // first user to register becomes admin
           await setAdmin(user.id, true);
         }
 

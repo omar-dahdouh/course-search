@@ -3,7 +3,9 @@ const { build } = require('./database');
 
 const register = require('./user/register');
 const login = require('./user/login');
-const verifyUser = require('./user/login');
+const logout = require('./user/logout');
+const verifyUser = require('./user/verifyUser');
+const adminOnly = require('./user/adminOnly');
 const { generateToken, verifyToken } = require('./user/token');
 
 const updateUdemy = require('./updateData/udemy');
@@ -23,9 +25,11 @@ module.exports = {
 
   register,
   login,
+  logout,
   generateToken,
   verifyToken,
   verifyUser,
+  adminOnly,
 
   updateUdemy,
   updateCoursera,
