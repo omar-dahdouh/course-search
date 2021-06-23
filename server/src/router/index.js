@@ -5,6 +5,9 @@ const {
   serverError,
   build,
 
+  register,
+  login,
+
   updateUdemy,
   updateCoursera,
   updateEdx,
@@ -15,6 +18,9 @@ const {
   getCourse,
   getCatalog,
 } = require('../controller');
+
+router.post('/register', register);
+router.post('/login', login);
 
 router.get('/build', build);
 
