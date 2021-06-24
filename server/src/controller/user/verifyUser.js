@@ -6,7 +6,6 @@ async function verifyUser(req, res) {
 
   try {
     const email = await verifyToken(token);
-
     const {rows} = await getUserByEmail(email);
 
     if (rows.length !== 0) {
