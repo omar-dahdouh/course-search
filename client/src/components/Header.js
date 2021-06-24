@@ -1,21 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Layout, Menu, Avatar, Dropdown, message } from 'antd';
+
+import {
+  Button,
+  Layout,
+  Menu,
+  Avatar,
+  Dropdown,
+  message,
+  notification,
+} from 'antd';
+
 import {
   LockOutlined,
   UserOutlined,
   PoweroffOutlined,
   ControlOutlined,
+  SmileOutlined,
 } from '@ant-design/icons';
 
 import axios from 'axios';
 
-import { Login } from '../modals';
+import { Login, Register } from '../modals';
 
 const Header = ({ userData, loggedIn, setUserData, setLoggedIn }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
-  const [verifying, setVerifying] = useState(true);
+  const [showRegister, setShowRegister] = useState(false);
 
   useEffect(() => {
     console.log('start');
@@ -24,12 +35,10 @@ const Header = ({ userData, loggedIn, setUserData, setLoggedIn }) => {
       .then(({ data }) => {
         setUserData(data.user);
         setLoggedIn(true);
-        setVerifying(false);
       })
       .catch(() => {
         setUserData({});
         setLoggedIn(false);
-        setVerifying(false);
       });
   }, [setLoggedIn, setUserData]);
 
@@ -52,10 +61,26 @@ const Header = ({ userData, loggedIn, setUserData, setLoggedIn }) => {
   function hideLoginModal() {
     setShowLogin(false);
   }
-
   function onLoginSuccess(data) {
     setLoggedIn(true);
     setUserData(data.user);
+  }
+
+  function showRegisterModal() {
+    setShowRegister(true);
+  }
+  function hideRegisterModal() {
+    setShowRegister(false);
+  }
+  function onRegisterSuccess(data) {
+    if (data.id === 1) {
+      notification.open({
+        message: 'Registeration',
+        description: 'first user to register becomes an admin',
+        icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+      });
+    }
+    message.info('successfully registered, you can login now!');
   }
 
   function logOut() {
@@ -91,6 +116,11 @@ const Header = ({ userData, loggedIn, setUserData, setLoggedIn }) => {
         hideModal={hideLoginModal}
         onSuccess={onLoginSuccess}
       />
+      <Register
+        visible={showRegister}
+        hideModal={hideRegisterModal}
+        onSuccess={onRegisterSuccess}
+      />
 
       <div style={{ float: 'right' }}>
         {loggedIn ? (
@@ -110,7 +140,7 @@ const Header = ({ userData, loggedIn, setUserData, setLoggedIn }) => {
             <Button type="link" size="large" onClick={showLoginModal}>
               <LockOutlined /> login
             </Button>
-            <Button type="link" size="large">
+            <Button type="link" size="large" onClick={showRegisterModal}>
               <UserOutlined /> register
             </Button>
           </>
