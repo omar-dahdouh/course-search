@@ -5,6 +5,12 @@ const {
   serverError,
   build,
 
+  register,
+  login,
+  logout,
+  verifyUser,
+  adminOnly,
+
   updateUdemy,
   updateCoursera,
   updateEdx,
@@ -16,13 +22,19 @@ const {
   getCatalog,
 } = require('../controller');
 
-router.get('/build', build);
+router.post('/register', register);
+router.post('/login', login);
+router.post('/logout', logout);
+router.get('/verifyUser', verifyUser);
 
-router.get('/updateUdemy', updateUdemy);
-router.get('/updateCoursera', updateCoursera);
-router.get('/updateEdx', updateEdx);
-router.get('/updateAlison', updateAlison);
-router.get('/updateFuturelearn', updateFuturelearn);
+router.put('/build', adminOnly, build);
+
+router.use('/update', adminOnly);
+router.put('/update/udemy', updateUdemy);
+router.put('/update/coursera', updateCoursera);
+router.put('/update/edx', updateEdx);
+router.put('/update/alison', updateAlison);
+router.put('/update/futurelearn', updateFuturelearn);
 
 router.get('/getCatalog', getCatalog);
 router.post('/search', search);

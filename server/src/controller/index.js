@@ -1,20 +1,35 @@
 const { pageNotFound, serverError } = require('./error');
-const { build } = require('../controller/database');
+const { build } = require('./database');
 
-const updateUdemy = require('../controller/updateData/udemy');
-const updateCoursera = require('../controller/updateData/coursera');
-const updateEdx = require('../controller/updateData/edx');
-const updateAlison = require('../controller/updateData/alison');
-const updateFuturelearn = require('../controller/updateData/futurelearn');
+const register = require('./user/register');
+const login = require('./user/login');
+const logout = require('./user/logout');
+const verifyUser = require('./user/verifyUser');
+const adminOnly = require('./user/adminOnly');
+const { generateToken, verifyToken } = require('./user/token');
 
-const search = require('../controller/getData/search');
-const getCourse = require('../controller/getData/getCourse');
-const getCatalog = require('../controller/getData/getCatalog');
+const updateUdemy = require('./updateData/udemy');
+const updateCoursera = require('./updateData/coursera');
+const updateEdx = require('./updateData/edx');
+const updateAlison = require('./updateData/alison');
+const updateFuturelearn = require('./updateData/futurelearn');
+
+const search = require('./getData/search');
+const getCourse = require('./getData/getCourse');
+const getCatalog = require('./getData/getCatalog');
 
 module.exports = {
   pageNotFound,
   serverError,
   build,
+
+  register,
+  login,
+  logout,
+  generateToken,
+  verifyToken,
+  verifyUser,
+  adminOnly,
 
   updateUdemy,
   updateCoursera,
