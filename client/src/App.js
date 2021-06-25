@@ -27,7 +27,7 @@ function App() {
           <SearchPage />
         </Route>
         <Route path="/details/:id">
-          <DetailsPage />
+          <DetailsPage userData={userData} loggedIn={loggedIn} />
         </Route>
         <Route path="/">
           <HomePage />

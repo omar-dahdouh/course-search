@@ -6,6 +6,7 @@ const login = require('./user/login');
 const logout = require('./user/logout');
 const verifyUser = require('./user/verifyUser');
 const adminOnly = require('./user/adminOnly');
+const authenticate = require('./user/authenticate');
 const { generateToken, verifyToken } = require('./user/token');
 
 const updateUdemy = require('./updateData/udemy');
@@ -17,6 +18,10 @@ const updateFuturelearn = require('./updateData/futurelearn');
 const search = require('./getData/search');
 const getCourse = require('./getData/getCourse');
 const getCatalog = require('./getData/getCatalog');
+
+const addComment = require('./comment/addComment');
+const getComments = require('./comment/getComments');
+const deleteComment = require('./comment/deleteComment');
 
 module.exports = {
   pageNotFound,
@@ -30,6 +35,7 @@ module.exports = {
   verifyToken,
   verifyUser,
   adminOnly,
+  authenticate,
 
   updateUdemy,
   updateCoursera,
@@ -40,4 +46,8 @@ module.exports = {
   search,
   getCourse,
   getCatalog,
+
+  addComment,
+  getComments,
+  deleteComment,
 };

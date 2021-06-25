@@ -2,11 +2,16 @@ const getUserByEmail = require('./user/getUserByEmail');
 const registerUser = require('./user/registerUser');
 const setAdmin = require('./user/setAdmin');
 
-const getCourse = require('./getCourse');
-const insertCourse = require('./insertCourse');
-const insertCourses = require('./insertCourses');
-const deleteCourses = require('./deleteCourses');
-const searchCourses = require('./searchCourses');
+const getCourse = require('./course/getCourse');
+const insertCourse = require('./course/insertCourse');
+const insertCourses = require('./course/insertCourses');
+const deleteCourses = require('./course/deleteCourses');
+const searchCourses = require('./course/searchCourses');
+
+const insertComment = require('./comment/insertComment');
+const deleteCommentById = require('./comment/deleteCommentById');
+const getCommentById = require('./comment/getCommentById');
+const getCommentsByCourseId = require('./comment/getCommentsByCourseId');
 
 module.exports = {
   getUserByEmail,
@@ -18,4 +23,9 @@ module.exports = {
   insertCourses,
   deleteCourses,
   searchCourses,
+
+  insertComment,
+  deleteCommentById,
+  getCommentById,
+  getCommentsByCourseId,
 };

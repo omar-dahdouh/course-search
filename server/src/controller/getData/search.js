@@ -1,5 +1,5 @@
-const searchCourses = require('../../database/query/searchCourses');
-const { categoryName, categorySubTree } = require('../../assets/catalogIndex');
+const { searchCourses } = require('../../database/query');
+const { categoryName } = require('../../assets/catalogIndex');
 const { sourceImage } = require('../../assets/sourceInfo');
 
 async function search(req, res) {

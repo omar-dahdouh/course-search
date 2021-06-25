@@ -10,10 +10,16 @@ import {
   Button,
   Alert,
   Spin,
+  // Divider,
+  // Comment,
+  // Avatar,
 } from 'antd';
+
+import { Comments } from '../components';
+
 const { Title, Text, Paragraph } = Typography;
 
-function DetailsPage() {
+function DetailsPage({ userData, loggedIn }) {
   const [course, setCourse] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
@@ -112,6 +118,12 @@ function DetailsPage() {
                 <p dangerouslySetInnerHTML={{ __html: course.description }} />
               </Paragraph>
             </Col>
+          </Row>
+          <Row>
+            <Col span={18}>
+              <Comments courseId={id} userData={userData} loggedIn={loggedIn} />
+            </Col>
+            <Col span={6}>{/* <h2>related courses</h2> */}</Col>
           </Row>
         </>
       )}

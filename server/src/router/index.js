@@ -20,6 +20,10 @@ const {
   search,
   getCourse,
   getCatalog,
+
+  addComment,
+  getComments,
+  deleteComment,
 } = require('../controller');
 
 router.post('/register', register);
@@ -39,6 +43,10 @@ router.put('/update/futurelearn', updateFuturelearn);
 router.get('/getCatalog', getCatalog);
 router.post('/search', search);
 router.get('/course/:id', getCourse);
+
+router.post('/comment', addComment);
+router.get('/comments/:courseId', getComments);
+router.delete('/comment/:commentId', deleteComment);
 
 router.use(pageNotFound);
 router.use(serverError);

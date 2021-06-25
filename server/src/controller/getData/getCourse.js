@@ -1,4 +1,4 @@
-const getCourse = require('../../database/query/getCourse');
+const { getCourse } = require('../../database/query');
 const { categoryName } = require('../../assets/catalogIndex');
 const { sourceImage, sourceLink } = require('../../assets/sourceInfo');
 

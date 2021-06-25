@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE IF EXISTS users, course;
+DROP TABLE IF EXISTS users, course, comment CASCADE;
 
 CREATE TABLE users
 (
@@ -22,6 +22,15 @@ CREATE TABLE course
 	description TEXT,
 	category INTEGER[],
 	date DATE
+);
+
+CREATE TABLE comment
+(
+	id SERIAL PRIMARY KEY ,
+	content VARCHAR(255) NOT NULL,
+	user_id INTEGER NOT NULL REFERENCES users(id),
+	created_at TIMESTAMPTZ DEFAULT NOW(),
+	course_id INTEGER NOT NULL REFERENCES course(id)
 );
 
 COMMIT;
