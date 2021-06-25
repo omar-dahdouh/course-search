@@ -30,10 +30,7 @@ async function addComment(req, res) {
       } else {
         res.json({
           message: 'inserted succeffuly',
-          comment: {
-            id: rows[0].id,
-            content,
-          },
+          comment: rows[0],
         });
       }
     } catch ({ message }) {

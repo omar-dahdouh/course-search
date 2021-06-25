@@ -20,6 +20,8 @@ const getCourse = require('./getData/getCourse');
 const getCatalog = require('./getData/getCatalog');
 
 const addComment = require('./comment/addComment');
+const getComments = require('./comment/getComments');
+const deleteComment = require('./comment/deleteComment');
 
 module.exports = {
   pageNotFound,
@@ -46,4 +48,6 @@ module.exports = {
   getCatalog,
 
   addComment,
+  getComments,
+  deleteComment,
 };

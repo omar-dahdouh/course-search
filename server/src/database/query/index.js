@@ -9,6 +9,9 @@ const deleteCourses = require('./course/deleteCourses');
 const searchCourses = require('./course/searchCourses');
 
 const insertComment = require('./comment/insertComment');
+const deleteCommentById = require('./comment/deleteCommentById');
+const getCommentById = require('./comment/getCommentById');
+const getCommentsByCourseId = require('./comment/getCommentsByCourseId');
 
 module.exports = {
   getUserByEmail,
@@ -22,4 +25,7 @@ module.exports = {
   searchCourses,
 
   insertComment,
+  deleteCommentById,
+  getCommentById,
+  getCommentsByCourseId,
 };
