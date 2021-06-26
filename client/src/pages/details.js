@@ -10,7 +10,10 @@ import {
   Button,
   Alert,
   Spin,
+  message,
 } from 'antd';
+
+import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 
 import { Comments } from '../components';
 
@@ -18,27 +21,88 @@ const { Title, Text, Paragraph } = Typography;
 
 function DetailsPage({ userData, loggedIn }) {
   const [course, setCourse] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [courseLoading, setCourseLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [favoriteLoading, setFavoriteLoading] = useState(false);
 
-  const { id } = useParams();
+  const { courseId } = useParams();
 
   useEffect(() => {
+    setFavoriteLoading(true);
     axios
-      .get(`/api/v1/course/${id}`)
+      .get(`/api/v1/course/${courseId}`)
       .then(({ data }) => {
         setCourse(data.course);
-        setIsLoading(false);
       })
       .catch(({ message }) => {
         setErrorMessage(message);
-        setIsLoading(false);
+      })
+      .finally(() => {
+        setCourseLoading(false);
       });
-  }, [id]);
+  }, [courseId]);
+
+  useEffect(() => {
+    if (loggedIn) {
+      setFavoriteLoading(true);
+      axios
+        .head(`/api/v1/favorite/${courseId}`)
+        .then(() => {
+          setIsFavorite(true);
+        })
+        .catch(() => {
+          setIsFavorite(false);
+        })
+        .finally(() => {
+          setFavoriteLoading(false);
+        });
+    } else {
+      setIsFavorite(false);
+    }
+  }, [courseId, loggedIn, userData]);
+
+  const addToFavorite = (courseId) => {
+    console.log('addToFavorite');
+    console.log({ isFavorite, favoriteLoading });
+    if (!isFavorite && !favoriteLoading) {
+      setFavoriteLoading(true);
+      axios
+        .post(`/api/v1/favorite/${courseId}`)
+        .then(() => {
+          message.success('added to favorite');
+          setIsFavorite(true);
+          setFavoriteLoading(false);
+        })
+        .catch(() => {
+          message.error('failed to add to favorite');
+          setFavoriteLoading(false);
+        });
+    }
+  };
+
+  const deleteFromFavorite = (courseId) => {
+    console.log('deleteFromFavorite');
+    console.log({ isFavorite, favoriteLoading });
+    if (isFavorite && !favoriteLoading) {
+      setFavoriteLoading(true);
+      axios
+        .delete(`/api/v1/favorite/${courseId}`)
+        .then(() => {
+          message.success('removed from favorite');
+          setIsFavorite(false);
+          setFavoriteLoading(false);
+        })
+        .catch(() => {
+          message.error('failed to remove from favorite');
+          setFavoriteLoading(false);
+        });
+    }
+  };
 
   return (
     <div className="content-padding">
-      {isLoading && (
+      {courseLoading && (
         <Spin tip="Loading...">
           <Alert
             message="Fetching data"
@@ -97,7 +161,20 @@ function DetailsPage({ userData, loggedIn }) {
               <br />
               <br />
 
-              <Button type="primary">add to favorite</Button>
+              <Button
+                disabled={!loggedIn || favoriteLoading}
+                onClick={() => {
+                  if (isFavorite) {
+                    deleteFromFavorite(course.id);
+                  } else {
+                    addToFavorite(course.id);
+                  }
+                }}
+                type="primary"
+              >
+                {isFavorite ? <HeartFilled /> : <HeartOutlined />}
+                {`${isFavorite ? 'remove from' : 'add to'} favorite`}
+              </Button>
               <br />
               <br />
             </Col>
@@ -118,7 +195,11 @@ function DetailsPage({ userData, loggedIn }) {
           </Row>
           <Row>
             <Col span={18}>
-              <Comments courseId={id} userData={userData} loggedIn={loggedIn} />
+              <Comments
+                courseId={courseId}
+                userData={userData}
+                loggedIn={loggedIn}
+              />
             </Col>
             <Col span={6}>{/* <h2>related courses</h2> */}</Col>
           </Row>

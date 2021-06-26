@@ -26,6 +26,7 @@ const deleteComment = require('./comment/deleteComment');
 const addFavorite = require('./favorite/addFavorite');
 const deleteFavorite = require('./favorite/deleteFavorite');
 const getFavorite = require('./favorite/getFavorite');
+const isFavorite = require('./favorite/isFavorite');
 
 module.exports = {
   pageNotFound,
@@ -58,4 +59,5 @@ module.exports = {
   addFavorite,
   deleteFavorite,
   getFavorite,
+  isFavorite,
 };

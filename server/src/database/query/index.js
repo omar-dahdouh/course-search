@@ -16,6 +16,7 @@ const getCommentsByCourseId = require('./comment/getCommentsByCourseId');
 const addToFavorite = require('./favorite/addToFavorite');
 const deleteFromFavorite = require('./favorite/deleteFromFavorite');
 const getUserFavorite = require('./favorite/getUserFavorite');
+const isCourseFavorite = require('./favorite/isCourseFavorite');
 
 module.exports = {
   getUserByEmail,
@@ -36,4 +37,5 @@ module.exports = {
   addToFavorite,
   deleteFromFavorite,
   getUserFavorite,
+  isCourseFavorite,
 };

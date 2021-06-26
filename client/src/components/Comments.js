@@ -148,7 +148,7 @@ const Comments = ({ courseId, userData, loggedIn }) => {
             autoSize={{ minRows: 3, maxRows: 6 }}
             value={commentContent}
             maxLength={255}
-            disabled={posting}
+            disabled={!loggedIn || posting}
           />
 
           {postingError && (
@@ -166,10 +166,11 @@ const Comments = ({ courseId, userData, loggedIn }) => {
           <Button
             type="primary"
             style={{ marginTop: 8 }}
-            loading={posting}
             onClick={postComment}
+            disabled={!loggedIn || posting}
+            loading={posting}
           >
-            post
+            {posting ? 'posting ...' : 'post'}
           </Button>
           {loggedIn && (
             <>

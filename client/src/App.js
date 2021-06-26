@@ -26,7 +26,7 @@ function App() {
         <Route path="/search">
           <SearchPage />
         </Route>
-        <Route path="/details/:id">
+        <Route path="/details/:courseId">
           <DetailsPage userData={userData} loggedIn={loggedIn} />
         </Route>
         <Route path="/">
