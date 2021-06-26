@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import {
   Button,
@@ -17,6 +17,11 @@ import {
   PoweroffOutlined,
   ControlOutlined,
   SmileOutlined,
+  HeartFilled,
+  HeartOutlined,
+  ProfileFilled,
+  CloseCircleFilled,
+  FundFilled,
 } from '@ant-design/icons';
 
 import axios from 'axios';
@@ -27,6 +32,8 @@ const Header = ({ userData, loggedIn, setUserData, setLoggedIn }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
     axios
@@ -42,13 +49,28 @@ const Header = ({ userData, loggedIn, setUserData, setLoggedIn }) => {
   }, [setLoggedIn, setUserData]);
 
   const userMenu = (
-    <Menu onClick={() => {}}>
+    <Menu>
       {loggedIn && userData.is_admin && (
-        <Menu.Item key="1" icon={<ControlOutlined />}>
+        <Menu.Item
+          key="1"
+          icon={<FundFilled />}
+          onClick={() => {
+            history.push('/dashboard');
+          }}
+        >
           Dashboard
         </Menu.Item>
       )}
-      <Menu.Item key="2" icon={<PoweroffOutlined />} onClick={logOut}>
+      <Menu.Item
+        key="2"
+        icon={<HeartFilled />}
+        onClick={() => {
+          history.push('/favorite');
+        }}
+      >
+        Favorite
+      </Menu.Item>
+      <Menu.Item key="3" icon={<CloseCircleFilled />} onClick={logOut}>
         Logout
       </Menu.Item>
     </Menu>
