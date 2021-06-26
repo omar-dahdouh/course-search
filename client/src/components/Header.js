@@ -29,7 +29,6 @@ const Header = ({ userData, loggedIn, setUserData, setLoggedIn }) => {
   const [showRegister, setShowRegister] = useState(false);
 
   useEffect(() => {
-    console.log('start');
     axios
       .get('/api/v1/verifyUser')
       .then(({ data }) => {
@@ -90,15 +89,13 @@ const Header = ({ userData, loggedIn, setUserData, setLoggedIn }) => {
       message.loading({ content: 'logging out...', key });
       axios
         .post(`/api/v1/logout`)
-        .then(({ data }) => {
+        .then(() => {
           setLoggedIn(false);
           setUserData({});
           message.success({ content: 'logged out!', key, duration: 1 });
           setLoggingOut(false);
         })
-        .catch((error) => {
-          console.log(error);
-          console.log(error.response);
+        .catch(() => {
           message.error({ content: 'logout failed', key, duration: 2 });
           setLoggingOut(false);
         });

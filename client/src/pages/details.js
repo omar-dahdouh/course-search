@@ -10,9 +10,6 @@ import {
   Button,
   Alert,
   Spin,
-  // Divider,
-  // Comment,
-  // Avatar,
 } from 'antd';
 
 import { Comments } from '../components';
