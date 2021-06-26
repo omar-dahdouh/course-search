@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import 'antd/dist/antd.css';
 
-import { HomePage, SearchPage, DetailsPage } from './pages';
+import { HomePage, SearchPage, DetailsPage, FavoritePage } from './pages';
 
 import { Layout } from 'antd';
 import { Header } from './components';
@@ -26,8 +26,11 @@ function App() {
         <Route path="/search">
           <SearchPage />
         </Route>
-        <Route path="/details/:id">
+        <Route path="/details/:courseId">
           <DetailsPage userData={userData} loggedIn={loggedIn} />
+        </Route>
+        <Route path="/favorite">
+          <FavoritePage userData={userData} loggedIn={loggedIn} />
         </Route>
         <Route path="/">
           <HomePage />

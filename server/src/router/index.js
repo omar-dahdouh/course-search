@@ -24,6 +24,11 @@ const {
   addComment,
   getComments,
   deleteComment,
+
+  addFavorite,
+  deleteFavorite,
+  getFavorite,
+  isFavorite,
 } = require('../controller');
 
 router.post('/register', register);
@@ -47,6 +52,11 @@ router.get('/course/:id', getCourse);
 router.post('/comment', addComment);
 router.get('/comments/:courseId', getComments);
 router.delete('/comment/:commentId', deleteComment);
+
+router.post('/favorite/:courseId', addFavorite);
+router.delete('/favorite/:courseId', deleteFavorite);
+router.get('/favorite/', getFavorite);
+router.head('/favorite/:courseId', isFavorite);
 
 router.use(pageNotFound);
 router.use(serverError);
