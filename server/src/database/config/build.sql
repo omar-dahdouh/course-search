@@ -33,4 +33,11 @@ CREATE TABLE comment
 	course_id INTEGER NOT NULL REFERENCES course(id)
 );
 
+CREATE TABLE favorite
+(
+	user_id INTEGER NOT NULL REFERENCES users(id),
+	course_id INTEGER NOT NULL REFERENCES course(id),
+	PRIMARY KEY (user_id, course_id)
+);
+
 COMMIT;

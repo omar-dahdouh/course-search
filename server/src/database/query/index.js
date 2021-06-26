@@ -13,6 +13,10 @@ const deleteCommentById = require('./comment/deleteCommentById');
 const getCommentById = require('./comment/getCommentById');
 const getCommentsByCourseId = require('./comment/getCommentsByCourseId');
 
+const addToFavorite = require('./favorite/addToFavorite');
+const deleteFromFavorite = require('./favorite/deleteFromFavorite');
+const getUserFavorite = require('./favorite/getUserFavorite');
+
 module.exports = {
   getUserByEmail,
   registerUser,
@@ -28,4 +32,8 @@ module.exports = {
   deleteCommentById,
   getCommentById,
   getCommentsByCourseId,
+
+  addToFavorite,
+  deleteFromFavorite,
+  getUserFavorite,
 };
