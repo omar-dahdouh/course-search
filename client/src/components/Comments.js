@@ -115,11 +115,6 @@ const Comments = ({ courseId, userData, loggedIn }) => {
                 <Text style={{ marginLeft: 10 }} type="secondary">
                   {new Date(comment.created_at).toDateString()}
                 </Text>
-                {console.log({
-                  loggedIn,
-                  'userData.id': userData.id,
-                  'comment.user_id': comment.user_id,
-                })}
                 {loggedIn && userData.id === comment.user_id && (
                   <Popconfirm
                     title="Are you sure you want to delete this comment ?"
@@ -129,7 +124,7 @@ const Comments = ({ courseId, userData, loggedIn }) => {
                     okText="Delete"
                     okType="danger"
                   >
-                    <Button danger type="link">
+                    <Button danger size="small" type="link">
                       <DeleteOutlined />
                       delete
                     </Button>

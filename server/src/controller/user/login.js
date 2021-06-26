@@ -22,6 +22,7 @@ async function login(req, res) {
 
       res.cookie('user_email', token, { expires }).json({
         user: {
+          id: user.id,
           name: user.name,
           email: user.email,
           is_admin: user.is_admin,
