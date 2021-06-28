@@ -14,8 +14,7 @@ function HomePage() {
   useEffect(() => {
     axios
       .post(`/api/v1/search`, {
-        query: '',
-        limit: 6,
+        limit: 12,
       })
       .then(({ data }) => {
         setCourses(data.results);
@@ -33,10 +32,6 @@ function HomePage() {
     history.push(`/search?query=${searchInput}`);
   }
 
-  function getStarted() {
-    history.push(`/search`);
-  }
-
   function onClick(id) {
     history.push(`/details/${id}`);
   }
@@ -49,12 +44,17 @@ function HomePage() {
             <Title>Find The Best Courses Online</Title>
             <Paragraph>
               a search engine for popular educational websites , search for
-              course by title and category
+              course by title and category, ype something to get started
             </Paragraph>
 
-            <Button type="primary" size="large" onClick={getStarted}>
-              get started
-            </Button>
+            <Input.Search
+              size="large"
+              value={searchInput}
+              onSearch={onSearch}
+              onChange={onSearchInputChange}
+              placeholder="input search text"
+              enterButton
+            />
           </div>
         </Col>
         <Col xs={{ span: 24, order: 1 }} md={{ span: 12, order: 2 }}>
@@ -68,23 +68,7 @@ function HomePage() {
       <Row>
         <Col span={24}>
           <div className="content-padding content-center">
-            <br />
-            <Title>type something to get started</Title>
-            <Input.Search
-              value={searchInput}
-              onSearch={onSearch}
-              onChange={onSearchInputChange}
-              size="large"
-              className="search-input"
-              placeholder="input search text"
-              enterButton="Search"
-            />
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <div className="content-padding content-center">
+            <Title>popular courses</Title>
             <GridView
               style={{ width: '100%' }}
               courses={courses}
