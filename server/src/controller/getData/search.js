@@ -1,14 +1,36 @@
-const { searchCourses } = require('../../database/query');
+const { searchInTitle, searchInDescription } = require('../../database/query');
 const { categoryName } = require('../../assets/catalogIndex');
 const { sourceImage } = require('../../assets/sourceInfo');
 
 async function search(req, res) {
-  const { query = '', category = 0, offset = 0, limit = 12 } = req.body;
+  const {
+    query = '',
+    inTitle = true,
+    category = 0,
+    offset = 0,
+    limit = 12,
+    ratingRange = [0, 5],
+    maxDate = new Date().toISOString(),
+    providers = [1, 148, 203, 235, 245],
+  } = req.body;
 
   try {
-    const { rows } = await searchCourses({ query, category, offset, limit });
+    const options = {
+      query,
+      categories: category ? [category] : providers,
+      offset,
+      limit,
+      maxDate,
+      ratingRange,
+    };
+
+    const { rows } = inTitle
+      ? await searchInTitle(options)
+      : await searchInDescription(options);
+
     const results = rows.map((row) => {
       const source = categoryName.get(row.category[0]);
+
       return {
         category: row.category.map((id) => {
           return { id, name: categoryName.get(id) };

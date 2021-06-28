@@ -79,6 +79,8 @@ async function update(req, res) {
             'https://prod-discovery.edx-cdn.org/media/course/image/',
             ''
           ),
+          rating: 0,
+          reviews: 0,
           category: [source, cat.id],
         });
       }

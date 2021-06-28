@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE IF EXISTS users, course, comment CASCADE;
+DROP TABLE IF EXISTS users, course, comment, favorite CASCADE;
 
 CREATE TABLE users
 (

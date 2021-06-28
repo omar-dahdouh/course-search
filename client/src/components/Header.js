@@ -14,12 +14,8 @@ import {
 import {
   LockOutlined,
   UserOutlined,
-  PoweroffOutlined,
-  ControlOutlined,
   SmileOutlined,
   HeartFilled,
-  HeartOutlined,
-  ProfileFilled,
   CloseCircleFilled,
   FundFilled,
 } from '@ant-design/icons';
