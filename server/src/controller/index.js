@@ -18,6 +18,8 @@ const updateFuturelearn = require('./updateData/futurelearn');
 const search = require('./getData/search');
 const getCourse = require('./getData/getCourse');
 const getCatalog = require('./getData/getCatalog');
+const makeBackup = require('./getData/makeBackup');
+const restoreBackup = require('./getData/restoreBackup');
 
 const addComment = require('./comment/addComment');
 const getComments = require('./comment/getComments');
@@ -51,6 +53,8 @@ module.exports = {
   search,
   getCourse,
   getCatalog,
+  makeBackup,
+  restoreBackup,
 
   addComment,
   getComments,

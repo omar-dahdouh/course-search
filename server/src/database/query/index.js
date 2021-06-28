@@ -7,6 +7,7 @@ const insertCourse = require('./course/insertCourse');
 const insertCourses = require('./course/insertCourses');
 const deleteCourses = require('./course/deleteCourses');
 const searchCourses = require('./course/searchCourses');
+const getAllCourses = require('./course/getAllCourses');
 
 const insertComment = require('./comment/insertComment');
 const deleteCommentById = require('./comment/deleteCommentById');
@@ -28,6 +29,7 @@ module.exports = {
   insertCourses,
   deleteCourses,
   searchCourses,
+  getAllCourses,
 
   insertComment,
   deleteCommentById,

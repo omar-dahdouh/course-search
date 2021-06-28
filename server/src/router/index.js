@@ -20,6 +20,8 @@ const {
   search,
   getCourse,
   getCatalog,
+  makeBackup,
+  restoreBackup,
 
   addComment,
   getComments,
@@ -48,6 +50,8 @@ router.put('/update/futurelearn', updateFuturelearn);
 router.get('/getCatalog', getCatalog);
 router.post('/search', search);
 router.get('/course/:id', getCourse);
+router.put('/makeBackup', adminOnly, makeBackup);
+router.put('/restoreBackup', adminOnly, restoreBackup);
 
 router.post('/comment', addComment);
 router.get('/comments/:courseId', getComments);
