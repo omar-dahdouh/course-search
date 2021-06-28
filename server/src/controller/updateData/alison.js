@@ -45,6 +45,7 @@ async function update(req, res) {
             ''
           ),
           rating: course.rating,
+          reviews: 0,
           category: [source, cat.id],
         });
       }

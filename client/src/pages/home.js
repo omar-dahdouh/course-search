@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { useHistory, Link } from 'react-router-dom';
-import { Row, Col, Input, Typography, Button } from 'antd';
+import { Row, Col, Input, Typography } from 'antd';
 import { GridView } from '../components';
 
 const { Title, Paragraph } = Typography;
