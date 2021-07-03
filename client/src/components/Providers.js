@@ -1,10 +1,19 @@
 import React, { useReducer } from 'react';
 import axios from 'axios';
 
-import { providerReducer } from '../assets/reducers';
-
 import { Table, Button, Alert, message, Spin } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
+
+function providerReducer(state, action) {
+  switch (action.type) {
+    case 'add':
+      return [...state, action.key];
+    case 'delete':
+      return state.filter((key) => key !== action.key);
+    default:
+      throw new Error();
+  }
+}
 
 function Providers({ userData, loggedIn }) {
   const [providerLoading, dispatchProvider] = useReducer(providerReducer, []);
