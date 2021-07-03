@@ -8,6 +8,9 @@ const verifyUser = require('./user/verifyUser');
 const adminOnly = require('./user/adminOnly');
 const authenticate = require('./user/authenticate');
 const { generateToken, verifyToken } = require('./user/token');
+const getUsers = require('./user/getUsers');
+const setAdminRole = require('./user/setAdminRole');
+const removeUser = require('./user/removeUser');
 
 const updateUdemy = require('./updateData/udemy');
 const updateCoursera = require('./updateData/coursera');
@@ -41,6 +44,9 @@ module.exports = {
   verifyUser,
   adminOnly,
   authenticate,
+  getUsers,
+  setAdminRole,
+  removeUser,
 
   updateUdemy,
   updateCoursera,

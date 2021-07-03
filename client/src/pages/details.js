@@ -63,8 +63,6 @@ function DetailsPage({ userData, loggedIn }) {
   }, [courseId, loggedIn, userData]);
 
   const addToFavorite = (courseId) => {
-    console.log('addToFavorite');
-    console.log({ isFavorite, favoriteLoading });
     if (!isFavorite && !favoriteLoading) {
       setFavoriteLoading(true);
       axios
@@ -82,8 +80,6 @@ function DetailsPage({ userData, loggedIn }) {
   };
 
   const deleteFromFavorite = (courseId) => {
-    console.log('deleteFromFavorite');
-    console.log({ isFavorite, favoriteLoading });
     if (isFavorite && !favoriteLoading) {
       setFavoriteLoading(true);
       axios
@@ -132,7 +128,7 @@ function DetailsPage({ userData, loggedIn }) {
               <Breadcrumb style={{ display: 'inline' }}>
                 {course.category.map(({ id, name }) => {
                   return (
-                    <Breadcrumb.Item>
+                    <Breadcrumb.Item key={id}>
                       <Link to={`/search/?category=${id}`}>{name}</Link>
                     </Breadcrumb.Item>
                   );

@@ -114,7 +114,6 @@ function SearchPage() {
           futurelearn: false,
         }
       );
-    console.log({ prov });
 
     setProviders(prov);
 
@@ -225,7 +224,6 @@ function SearchPage() {
       ...providers,
       [key]: target.checked,
     });
-    console.log(providers);
   }
 
   return (
