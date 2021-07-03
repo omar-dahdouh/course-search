@@ -12,22 +12,19 @@ import {
   Dashboard,
 } from './pages';
 
-import { Layout } from 'antd';
-import { Header } from './components';
+import { Header, Footer } from './components';
 
 function App() {
   const [userData, setUserData] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
   return (
     <Router>
-      <Layout>
-        <Header
-          userData={userData}
-          loggedIn={loggedIn}
-          setUserData={setUserData}
-          setLoggedIn={setLoggedIn}
-        />
-      </Layout>
+      <Header
+        userData={userData}
+        loggedIn={loggedIn}
+        setUserData={setUserData}
+        setLoggedIn={setLoggedIn}
+      />
       <Switch>
         <Route path="/search">
           <SearchPage />
@@ -45,6 +42,7 @@ function App() {
           <HomePage />
         </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 }
