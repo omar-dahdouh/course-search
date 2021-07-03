@@ -32,7 +32,6 @@ function FavoritePage({ userData, loggedIn }) {
       axios
         .get(`/api/v1/favorite`)
         .then(({ data }) => {
-          console.log(data.courses);
           setCourses(data.courses);
         })
         .catch(({ message }) => {
@@ -77,7 +76,7 @@ function FavoritePage({ userData, loggedIn }) {
       {loggedIn && !loading && courses.length === 0 && <Empty />}
       {loggedIn &&
         courses.map((course) => (
-          <Row gutter={16} className="">
+          <Row gutter={16} className="" key={course.id}>
             <Col span={6}>
               <img
                 src={course.image}
@@ -94,7 +93,7 @@ function FavoritePage({ userData, loggedIn }) {
               <Breadcrumb style={{ display: 'inline' }}>
                 {course.category.map(({ id, name }) => {
                   return (
-                    <Breadcrumb.Item>
+                    <Breadcrumb.Item key={id}>
                       <Link to={`/search/?category=${id}`}>{name}</Link>
                     </Breadcrumb.Item>
                   );

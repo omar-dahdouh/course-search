@@ -103,7 +103,7 @@ const Comments = ({ courseId, userData, loggedIn }) => {
             comments.length === 1 ? '' : 's'
           }`}</Divider>
           {comments.map((comment) => (
-            <Row wrap={false}>
+            <Row wrap={false} key={comment.id}>
               <Col flex="54px">
                 <Avatar size="large" shape="square" icon={<UserOutlined />} />
               </Col>

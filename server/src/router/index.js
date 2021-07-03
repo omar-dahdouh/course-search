@@ -10,6 +10,9 @@ const {
   logout,
   verifyUser,
   adminOnly,
+  getUsers,
+  setAdminRole,
+  removeUser,
 
   updateUdemy,
   updateCoursera,
@@ -35,6 +38,9 @@ router.post('/register', register);
 router.post('/login', login);
 router.post('/logout', logout);
 router.get('/verifyUser', verifyUser);
+router.get('/getUsers', adminOnly, getUsers);
+router.put('/setAdminRole', adminOnly, setAdminRole);
+router.delete('/removeUser/:userId', adminOnly, removeUser);
 
 router.put('/build', adminOnly, build);
 

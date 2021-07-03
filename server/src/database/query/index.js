@@ -1,6 +1,8 @@
 const getUserByEmail = require('./user/getUserByEmail');
 const registerUser = require('./user/registerUser');
 const setAdmin = require('./user/setAdmin');
+const getAllUsers = require('./user/getAllUsers');
+const deleteUser = require('./user/deleteUser');
 
 const getCourse = require('./course/getCourse');
 const insertCourse = require('./course/insertCourse');
@@ -23,6 +25,8 @@ module.exports = {
   getUserByEmail,
   registerUser,
   setAdmin,
+  getAllUsers,
+  deleteUser,
 
   getCourse,
   insertCourse,
