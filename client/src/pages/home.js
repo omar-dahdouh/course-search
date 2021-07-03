@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Row, Col, Input, Typography } from 'antd';
 import { GridView } from '../components';
 
@@ -75,51 +75,6 @@ function HomePage() {
               onClick={onClick}
             />
           </div>
-        </Col>
-      </Row>
-      <Row className="footer">
-        <Col span={12}>
-          <ul className="footer-link-list">
-            <li>
-              <Link to="/" className="footer-link">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/" className="footer-link">
-                About
-              </Link>
-            </li>
-          </ul>
-        </Col>
-        <Col span={12}>
-          <ul className="footer-link-list">
-            <li>
-              <a className="footer-link" href="https://www.udemy.com/">
-                Udemy
-              </a>
-            </li>
-            <li>
-              <a className="footer-link" href="https://www.coursera.org/">
-                Coursera
-              </a>
-            </li>
-            <li>
-              <a className="footer-link" href="https://www.edx.org/">
-                Edx
-              </a>
-            </li>
-            <li>
-              <a className="footer-link" href="https://alison.com/">
-                Alison
-              </a>
-            </li>
-            <li>
-              <a className="footer-link" href="https://www.futurelearn.com/">
-                Futurelearn
-              </a>
-            </li>
-          </ul>
         </Col>
       </Row>
     </>

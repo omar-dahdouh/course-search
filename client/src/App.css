@@ -46,7 +46,8 @@
 
 .footer {
   padding: 30px 5%;
-  background-color: #aaa;
+  background-color: #bbb;
+  color: #333;
 }
 
 .footer-link-list {
