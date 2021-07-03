@@ -12,7 +12,6 @@ import {
   Dashboard,
 } from './pages';
 
-import { Layout } from 'antd';
 import { Header, Footer } from './components';
 
 function App() {
